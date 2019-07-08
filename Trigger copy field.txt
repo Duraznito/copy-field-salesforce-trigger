@@ -1,0 +1,25 @@
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+clase apex                    >>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+@isTest
+private class importe_test{
+    @isTest static void TestNewCase() {
+     Comisiones__c nuevo = new Comisiones__c(Name='tests',Relacion__c='0060S000006AGIiQAO');
+     insert nuevo;
+    }
+}
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+trigger                        >>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+trigger importe on Comisiones__c (before insert, before update) {
+
+      for(Comisiones__c c : Trigger.New){  
+      if(c.Copy_Importe_Final_de_Venta__c != c.Opp_importe_final_de_venta__c){   
+      c.Copy_Importe_Final_de_Venta__c =c.Opp_importe_final_de_venta__c;
+     } 
+  }
+ 
+}
